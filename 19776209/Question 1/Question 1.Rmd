@@ -5,7 +5,6 @@ abstract: "This paper attempts to investigate the claims made by one of the auth
 output: pdf_document
 
 ---
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.width = 6, fig.height = 5, fig.pos="H", fig.pos = 'H')
 library(pacman)
@@ -21,17 +20,57 @@ df_mov <- read.csv("/Users/tiagob/Documents/Masters 2021/First Semester/Data Sci
 
 # Introduction
 
-This paper attempts to address four statements, posited by a friend at a braai. The first is whether movie critics are 'near perfect' predictors of movies' profitability and popularity among audiences. The second relates to the review platform 'Rotten Tomatoes', which is claimed to be a consistently good review platform. Whether Disney movies are the most profitable, and finally whether audiences are drawn to the highest grossing films.
+This paper attempts to address three statements, posited by a friend at a braai. The first relates to the review platform 'Rotten Tomatoes', which is claimed to be a consistently good review platform. Secondly Disney is the most profitable lead studio, and finally whether audiences are drawn to the highest grossing films.
 
 # Summary Statistics
 
-The dataset used to investigate the above claims is sourced from an associate at Mr Video, and contains info on movie critic and grossing data; with 74 observations in 8 variables. Detailed summary statistics for the dataset can be seen below:
+The dataset used to investigate the above claims is sourced from an associate at Mr Video, and contains info on movie critic and grossing data; with 74 observations in 8 variables. In our sample, the two most common genres are comedies and romances, which are 55% and 20.3%, respectively, of the sample movies. The average audience score is 64, the lowest score is 35, and the highest score is 89. Whereas the mean, lowest, and highest Rotten Tomatoes scores are 47.36, 3, and 96. The summary statistics can be found below, and although some aspects are not intuititve, they provide a snapshot of the data.
 
 ``` {r, echo=FALSE}
 
 describe(df_mov)
 
 ```
+
+# Comparing Rotten Tomatoes Reviews & Audience Reviews
+
+
+
+``` {r, echo=FALSE, fig.cap = "Comparing Rotten Tomatoes & Audience Scores\\label{Figure1}"}
+
+rt <- df_mov%>%filter(Rotten.Tomatoes..>80)
+
+g <- rt %>% ggplot() + geom_point(aes(x=Rotten.Tomatoes.., y=Audience..score..)) + geom_hline(yintercept=85) + labs(x="Rotten Tomatoes Score", y="Audience Score")
+
+g
+
+```
+
+As we can see from Figure \ref{Figure1}, a Rotten Tomatoes Score > 80, does not imply that audiences will always give the movie a rating > 85. In fact, most movies with a RT score > 80, have audience scores less than 85.
+
+# Disney Films Profitability
+
+``` {r, echo=FALSE, fig.cap = "Comparing the Profitability of Lead Studios\\label{Figure2}"}}
+dp <- df_mov%>%arrange(Profitability)
+
+d <- dp %>% ggplot(aes(x=Lead.Studio, y=Profitability)) + geom_bar(stat="identity") + theme_bw() + theme(legend.position = "right") + labs(x = "Lead Studio", 
+    y = "Profitability", title = "Comparing the Profitability of Lead Studios")
+
+d
+
+```
+
+As we can see from Figure \ref{Figure2}, Disney is not the most profitable of all leading studios. In fact, independent studios appear to be the most profitable of all lead studios. This may be because they have lower costs of making movies, relative to bigger studios, who although make more gross revenue from movies, also have much higher costs.
+
+# Audiences Attraction to High Grossing Films
+
+```{r, echo=FALSE}
+
+
+
+
+
+
 
 
 
