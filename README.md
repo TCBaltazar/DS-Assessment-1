@@ -3,9 +3,11 @@ READme
 
 # Overview/Purpose
 
-Practical on…
+This RMarkdown file is intended to be viewed as the solution for the
+Data Science Assessment on 24/05/2021.
 
-The following code was used to create the workspace environment:
+The following code was used, in the beginning, to create the workspace
+environment:
 
 ``` r
 fmxdat::make_project(FilePath="/Users/tiagob/Documents/Masters 2021/First Semester/Data Science/DS Assessment 1",ProjNam='19776209')
@@ -27,8 +29,8 @@ gc() # garbage collection - It can be useful to call gc after a large object has
 ```
 
     ##           used  (Mb) gc trigger  (Mb) limit (Mb) max used  (Mb)
-    ## Ncells 2178458 116.4    4040940 215.9         NA  4040940 215.9
-    ## Vcells 3719208  28.4    8388608  64.0      16384  5846927  44.7
+    ## Ncells 2178457 116.4    4040871 215.9         NA  4040871 215.9
+    ## Vcells 3719228  28.4    8388608  64.0      16384  5846938  44.7
 
 ``` r
     #loading data from CSV
@@ -87,8 +89,8 @@ between a movies worldwide gross and the score an audience gives it.
 # Question 2
 
     ##           used  (Mb) gc trigger  (Mb) limit (Mb) max used  (Mb)
-    ## Ncells 2350810 125.6    4040940 215.9         NA  4040940 215.9
-    ## Vcells 4028943  30.8    8388608  64.0      16384  5986644  45.7
+    ## Ncells 2350809 125.6    4040871 215.9         NA  4040871 215.9
+    ## Vcells 4028963  30.8    8388608  64.0      16384  5986662  45.7
 
 ## Introduction
 
@@ -118,6 +120,10 @@ Figure allows us to see that, out of the BRICS countries, Chinese
 billionaires have the greatest networth.
 
 # Question 3
+
+    ##           used  (Mb) gc trigger  (Mb) limit (Mb) max used  (Mb)
+    ## Ncells 2390927 127.7    4040871 215.9         NA  4040871 215.9
+    ## Vcells 4155068  31.8    8388608  64.0      16384  6868529  52.5
 
 ## Introduction
 
