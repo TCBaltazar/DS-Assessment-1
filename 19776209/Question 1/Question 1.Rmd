@@ -50,10 +50,10 @@ As we can see from Figure \ref{Figure1}, a Rotten Tomatoes Score > 80, does not 
 
 # Disney Films Profitability
 
-``` {r, echo=FALSE, fig.cap = "Comparing the Profitability of Lead Studios\\label{Figure2}"}}
-dp <- df_mov%>%arrange(Profitability)
+``` {r, echo=FALSE, fig.cap = "Comparing the Profitability of Lead Studios\\label{Figure2}"}
+dt <- df_mov%>%arrange(Profitability)
 
-d <- dp %>% ggplot(aes(x=Lead.Studio, y=Profitability)) + geom_bar(stat="identity") + theme_bw() + theme(legend.position = "right") + labs(x = "Lead Studio", 
+d <- dt %>% ggplot(aes(x=Lead.Studio, y=Profitability)) + geom_bar(stat="identity") + theme_bw() + theme(legend.position = "right") + labs(x = "Lead Studio", 
     y = "Profitability", title = "Comparing the Profitability of Lead Studios")
 
 d
@@ -64,9 +64,17 @@ As we can see from Figure \ref{Figure2}, Disney is not the most profitable of al
 
 # Audiences Attraction to High Grossing Films
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, fig.cap = "Correlation Between Audience Scores and Worldwide Gross\\label{Figure3}"}
 
+at <- df_mov%>% arrange(Worldwide.Gross)
 
+a <- df_mov %>% ggplot(aes(x=Worldwide.Gross, y=Audience..score..)) + labs(x="Audience Score", y="Worldwide Gross", title="Correlation Between Audience Scores and Worldwide Gross") + geom_smooth(method="lm", formula=y~x)
+
+a
+
+```
+
+As can be seen from Figure \ref{Figure3}, there is a significant positive correlation between a movies worldwide gross and the score an audience gives it.
 
 
 
