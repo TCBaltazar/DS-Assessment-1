@@ -23,7 +23,7 @@ Texevier::create_template(directory='/Users/tiagob/Documents/Masters 2021/First 
 
 # Question 1 
 
-```{r setup, include=FALSE}
+```{r, message=FALSe}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.width = 6, fig.height = 5, fig.pos="H", fig.pos = 'H')
 library(pacman)
 pacman::p_load(tidyverse, jtools, Hmisc)
@@ -32,41 +32,145 @@ if(!require(lubridate)) library(lubridate)
 gc() # garbage collection - It can be useful to call gc after a large object has been removed, as this may prompt R to return memory to the operating system.
 
 	#loading data from CSV
-df_mov <- read.csv("/Users/tiagob/Documents/Masters 2021/First Semester/Data Science/Assessment_NK/19776209/Question 1/data/Movies.csv")
+df_mov <- read.csv("/Users/tiagob/Documents/Masters 2021/First Semester/Data Science/DS Assessment 1/19776209/Question 1/data/Movies.csv")
 
 ```
+
+## Introduction
+
+This paper attempts to address three statements, posited by a friend at a braai. The first relates to the review platform 'Rotten Tomatoes', which is claimed to be a consistently good review platform. Secondly Disney is the most profitable lead studio, and finally whether audiences are drawn to the highest grossing films.
 
 ## Summary Statistics
 
-The dataset used to investigate the above claims is sourced from an associate at Mr Video, and contains info on movie critic and grossing data; with 74 observations in 8 variables. Statistics on the variables were generated using: 
+The dataset used to investigate the above claims is sourced from an associate at Mr Video, and contains info on movie critic and grossing data; with 74 observations in 8 variables. In our sample, the two most common genres are comedies and romances, which are 55% and 20.3%, respectively, of the sample movies. The average audience score is 64, the lowest score is 35, and the highest score is 89. Whereas the mean, lowest, and highest Rotten Tomatoes scores are 47.36, 3, and 96. Summary statistics on the variables were generated using the below code, and can be found in the Question 1 PDF. 
 
-``` {r, evaluate=FALSE}
+## Comparing Rotten Tomatoes Reviews & Audience Reviews
 
-describe(df_mov)
+
+
+``` {r, fig.cap = "Comparing Rotten Tomatoes & Audience Scores\\label{Figure1}"}
+
+rt <- df_mov%>%filter(Rotten.Tomatoes..>80)
+
+g <- rt %>% ggplot() + geom_point(aes(x=Rotten.Tomatoes.., y=Audience..score..)) + geom_hline(yintercept=85) + labs(x="Rotten Tomatoes Score", y="Audience Score")
+
+g
+
+```
+
+As we can see from Figure \ref{Figure1}, a Rotten Tomatoes Score > 80, does not imply that audiences will always give the movie a rating > 85. In fact, most movies with a RT score > 80, have audience scores less than 85.
+
+## Disney Films Profitability
+
+``` {r, fig.cap = "Comparing the Profitability of Lead Studios\\label{Figure2}"}
+dt <- df_mov%>%arrange(Profitability)
+
+d <- dt %>% ggplot(aes(x=Lead.Studio, y=Profitability)) + geom_bar(stat="identity") + theme_bw() + theme(legend.position = "right") + labs(x = "Lead Studio", 
+    y = "Profitability", title = "Comparing the Profitability of Lead Studios")
+
+d
 
 ```
 
-Describe how to answer; what function is doing.
+As we can see from Figure \ref{Figure2}, Disney is not the most profitable of all leading studios. In fact, independent studios appear to be the most profitable of all lead studios. This may be because they have lower costs of making movies, relative to bigger studios, who although make more gross revenue from movies, also have much higher costs.
 
-```{r}
+## Audiences Attraction to High Grossing Films
 
-Sumfun <- …
+```{r, fig.cap = "Correlation Between Audience Scores and Worldwide Gross\\label{Figure3}"}
+
+at <- df_mov%>% arrange(Worldwide.Gross)
+
+a <- df_mov %>% ggplot(aes(x=Worldwide.Gross, y=Audience..score..)) + labs(x="Audience Score", y="Worldwide Gross", title="Correlation Between Audience Scores and Worldwide Gross") + geom_smooth(method="lm", formula=y~x)
+
+a
 
 ```
-For tables/plots.
-```{r, message=FALSE}
 
-Function for output
-
-```
+As can be seen from Figure \ref{Figure3}, there is a significant positive correlation between a movies worldwide gross and the score an audience gives it.
 \newpage
 
 # Question 2 
 
-## Solution
+```{r, message=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.width = 6, fig.height = 5, fig.pos="H", fig.pos = 'H')
+library(pacman)
+pacman::p_load(tidyverse, jtools, Hmisc)
+if(!require(lubridate)) library(lubridate)
+
+gc() # garbage collection - It can be useful to call gc after a large object has been removed, as this may prompt R to return memory to the operating system.
+
+	#loading data from multiple CSV files at a particular location (ie the data folder)
+
+datimport <- function(fileimport="/Users/tiagob/Documents/Masters 2021/First Semester/Data Science/DS Assessment 1/19776209/Question 2/data"){
+    
+    tbl <-  list.files(path = fileimport  ,
+                       pattern = "*.csv", 
+                       full.names = T) %>% 
+        map_df(~read_csv(., col_types = cols(.default = "c"))) 
+    data <-  rename_with(tbl, ~ tolower(gsub(" ", ".", .x, fixed = TRUE)))
+    
+}
+
+df2 <- datimport(fileimport="/Users/tiagob/Documents/Masters 2021/First Semester/Data Science/DS Assessment 1/19776209/Question 2/data")
+
+```
+
+## Introduction
+
+The dataset used for this particular exercise merges data on billionaires in `r length(unique(df2$country))` countries. It contains 2755 observations in 7 variables, including the names of billionaires, their networth, the source of their wealth, their rank on the millionaires list, their age, and the industry within which they made their fortune. This discussion will present some figures in order to better understand the characteristics of billionaires.
+
+## Figure 1 - Distribution of Billionaires Networth by Industry
+
+```{r, fig.cap = "Distribution of Billionaires Networth by Industry\\label{Figure1}"}
+
+df2 %>% arrange(networth)%>%ggplot(aes(x=industry, y=networth))+ geom_bar(stat="identity") + labs(x="Industry", y="Networth")
+
+```
+
+As we can see from Figure \ref{Figure1} (although the x-axis labels are unclear), the industry with the highest networth individuals is Finance and Investments, followed closely by Technology, and Manufacturing. 
+
+## Figure 2 - Billionaires Networth in BRICS Economies
+
+``` {r, fig.cap = "Distribution of Billionaires in BRICS Countries\\label{Figure2}" }
+
+BRICS <- c("Brazil", "Russia", "India", "China", "South Africa")
+
+BRICSplot <- df2 %>% arrange(networth)%>%filter(country%in%BRICS)
+
+a <-    BRICSplot%>% ggplot(aes(x=country, y=networth))+ geom_bar(stat="identity") + labs(x="Country", y="Networth")  
+   
+a
+     
+```
+
+Figure \ref{Figure2} allows us to see that, out of the BRICS countries, Chinese billionaires have the greatest networth. 
 
 \newpage
 
 # Question 3 
 
-## Solution
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.width = 6, fig.height = 5, fig.pos="H", fig.pos = 'H')
+library(pacman)
+pacman::p_load(tidyverse, jtools)
+if(!require(lubridate)) library(lubridate)
+
+gc() # garbage collection - It can be useful to call gc after a large object has been removed, as this may prompt R to return memory to the operating system.
+
+    #Importing the data
+```
+
+## Introduction 
+
+Purpose of the study.
+Variable description, exploratory analysis.
+
+## Answers
+
+Interpretation
+
+\newpage
+
+## More Answers
+
+More interpretations
