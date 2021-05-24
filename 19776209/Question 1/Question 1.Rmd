@@ -1,0 +1,40 @@
+---
+title: "Question 1- Movie Profitability"
+subtitle: "19776209"
+abstract: "This paper attempts to investigate the claims made by one of the authors school friends, at a braai, that reviews by movie critics are near perfect predictors of movies' popularity and profitability among moviegoers."
+output: pdf_document
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.width = 6, fig.height = 5, fig.pos="H", fig.pos = 'H')
+library(pacman)
+pacman::p_load(tidyverse, jtools, Hmisc)
+if(!require(lubridate)) library(lubridate)
+
+gc() # garbage collection - It can be useful to call gc after a large object has been removed, as this may prompt R to return memory to the operating system.
+
+	#loading data from CSV
+df_mov <- read.csv("/Users/tiagob/Documents/Masters 2021/First Semester/Data Science/Assessment_NK/19776209/Question 1/data/Movies.csv")
+
+```
+
+# Introduction
+
+This paper attempts to address four statements, posited by a friend at a braai. The first is whether movie critics are 'near perfect' predictors of movies' profitability and popularity among audiences. The second relates to the review platform 'Rotten Tomatoes', which is claimed to be a consistently good review platform. Whether Disney movies are the most profitable, and finally whether audiences are drawn to the highest grossing films.
+
+# Summary Statistics
+
+The dataset used to investigate the above claims is sourced from an associate at Mr Video, and contains info on movie critic and grossing data; with 74 observations in 8 variables. Detailed summary statistics for the dataset can be seen below:
+
+``` {r, echo=FALSE}
+
+describe(df_mov)
+
+```
+
+
+
+
+
+

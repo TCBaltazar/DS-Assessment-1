@@ -1,0 +1,83 @@
+---
+title: "READme"
+output: github_document
+
+ 
+---
+
+# Overview/Purpose
+
+Practical on…
+
+The following code was used to create the workspace environment:
+
+```{r, eval=FALSE}
+
+fmxdat::make_project(FilePath="/Users/tiagob/Documents/Masters 2021/First Semester/Data Science/DS Assessment 1",ProjNam='19776209')
+
+Texevier::create_template(directory='/Users/tiagob/Documents/Masters 2021/First Semester/Data Science/DS Assessment 1/19776209/', template_name= 'Question 1')
+Texevier::create_template(directory='/Users/tiagob/Documents/Masters 2021/First Semester/Data Science/DS Assessment 1/19776209/', template_name= 'Question 2')
+Texevier::create_template(directory='/Users/tiagob/Documents/Masters 2021/First Semester/Data Science/DS Assessment 1/19776209/', template_name= 'Question 3')
+
+```
+
+# Question 1 
+
+```{r, message=FALSE}		
+library(pacman)
+p_load(tidyverse, jtools)
+if(!require(lubridate)) library(lubridate)
+```
+
+COLLECT GARBAGE AND SOURCE IN FUNCTIONS USING…
+```{r}
+gc() # garbage collection - It can be useful to call gc after a large object has been removed, as this may prompt R to return memory to the operating system.
+
+list.file(“CODEFILEPATH”, full.names=T, recursive=T) %>% a.list() %>% walk(~source(.))
+
+```
+
+DATA LOADING
+	Multiple CSV
+```{r} 
+Df_comb <- Data_Collating(Datroot=‘DATAFILEPATH’)
+```
+
+	Other Method
+```{r}
+    Loc <- "Question2/data/Wine/"
+    dff <- read_rds(glue::glue("{Loc}WineMag.rds"))
+    Fruitlist <- read_table("Question2/data/wine/Fruitlist.txt")
+    froots <- Fruitlist$Fruits  %>% unique %>% as.list()
+    CountryList <- c("South Africa", "Italy", "France", "US", "Spain")
+
+    dff_adj <- dff %>% filter(country %in% CountryList)
+
+```
+
+## Solution
+
+Describe how to answer; what function is doing.
+
+```{r}
+
+Sumfun <- …
+
+```
+For tables/plots.
+```{r, message=FALSE}
+
+Function for output
+
+```
+\newpage
+
+# Question 2 
+
+## Solution
+
+\newpage
+
+# Question 3 
+
+## Solution
