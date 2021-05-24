@@ -22,24 +22,13 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.width 
 library(pacman)
 pacman::p_load(tidyverse, jtools, Hmisc)
 if(!require(lubridate)) library(lubridate)
-```
 
-    ## Loading required package: lubridate
-
-    ## 
-    ## Attaching package: 'lubridate'
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     date, intersect, setdiff, union
-
-``` r
 gc() # garbage collection - It can be useful to call gc after a large object has been removed, as this may prompt R to return memory to the operating system.
 ```
 
     ##           used  (Mb) gc trigger  (Mb) limit (Mb) max used  (Mb)
-    ## Ncells 2178528 116.4    4040837 215.9         NA  4040837 215.9
-    ## Vcells 3719273  28.4    8388608  64.0      16384  5846718  44.7
+    ## Ncells 2178458 116.4    4040940 215.9         NA  4040940 215.9
+    ## Vcells 3719208  28.4    8388608  64.0      16384  5846927  44.7
 
 ``` r
     #loading data from CSV
@@ -66,7 +55,7 @@ lowest, and highest Rotten Tomatoes scores are 47.36, 3, and 96. Summary
 statistics on the variables were generated using the below code, and can
 be found in the Question 1 PDF.
 
-# Comparing Rotten Tomatoes Reviews & Audience Reviews
+## Comparing Rotten Tomatoes Reviews & Audience Reviews
 
 ![Comparing Rotten Tomatoes & Audience
 Scores](README_files/figure-gfm/unnamed-chunk-3-1.png)
@@ -76,7 +65,7 @@ imply that audiences will always give the movie a rating &gt; 85. In
 fact, most movies with a RT score &gt; 80, have audience scores less
 than 85.
 
-# Disney Films Profitability
+## Disney Films Profitability
 
 ![Comparing the Profitability of Lead
 Studios](README_files/figure-gfm/unnamed-chunk-4-1.png)
@@ -87,7 +76,7 @@ profitable of all lead studios. This may be because they have lower
 costs of making movies, relative to bigger studios, who although make
 more gross revenue from movies, also have much higher costs.
 
-# Audiences Attraction to High Grossing Films
+## Audiences Attraction to High Grossing Films
 
 ![Correlation Between Audience Scores and Worldwide
 Gross](README_files/figure-gfm/unnamed-chunk-5-1.png)
@@ -98,10 +87,10 @@ between a movies worldwide gross and the score an audience gives it.
 # Question 2
 
     ##           used  (Mb) gc trigger  (Mb) limit (Mb) max used  (Mb)
-    ## Ncells 2351243 125.6    4040837 215.9         NA  4040837 215.9
-    ## Vcells 4029917  30.8    8388608  64.0      16384  5990281  45.8
+    ## Ncells 2350810 125.6    4040940 215.9         NA  4040940 215.9
+    ## Vcells 4028943  30.8    8388608  64.0      16384  5986644  45.7
 
-# Introduction
+## Introduction
 
 The dataset used for this particular exercise merges data on
 billionaires in 70 countries. It contains 2755 observations in 7
@@ -111,7 +100,7 @@ and the industry within which they made their fortune. This discussion
 will present some figures in order to better understand the
 characteristics of billionaires.
 
-# Figure 1 - Distribution of Billionaires Networth by Industry
+## Figure 1 - Distribution of Billionaires Networth by Industry
 
 ![Distribution of Billionaires Networth by
 Industry](README_files/figure-gfm/unnamed-chunk-7-1.png)
@@ -120,7 +109,7 @@ As we can see from Figure (although the x-axis labels are unclear), the
 industry with the highest networth individuals is Finance and
 Investments, followed closely by Technology, and Manufacturing.
 
-# Figure 2 - Billionaires Networth in BRICS Economies
+## Figure 2 - Billionaires Networth in BRICS Economies
 
 ![Distribution of Billionaires in BRICS
 Countries](README_files/figure-gfm/unnamed-chunk-8-1.png)
@@ -130,4 +119,14 @@ billionaires have the greatest networth.
 
 # Question 3
 
-## Solution
+## Introduction
+
+Purpose of the study. Variable description, exploratory analysis.
+
+## Answers
+
+Interpretation
+
+## More Answers
+
+More interpretations

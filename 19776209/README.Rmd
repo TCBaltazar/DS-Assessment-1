@@ -23,7 +23,7 @@ Texevier::create_template(directory='/Users/tiagob/Documents/Masters 2021/First 
 
 # Question 1 
 
-```{r, message=FALSe}
+```{r, message=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.width = 6, fig.height = 5, fig.pos="H", fig.pos = 'H')
 library(pacman)
 pacman::p_load(tidyverse, jtools, Hmisc)
@@ -149,7 +149,7 @@ Figure \ref{Figure2} allows us to see that, out of the BRICS countries, Chinese 
 
 # Question 3 
 
-```{r setup, include=FALSE}
+```{r}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.width = 6, fig.height = 5, fig.pos="H", fig.pos = 'H')
 library(pacman)
 pacman::p_load(tidyverse, jtools)
