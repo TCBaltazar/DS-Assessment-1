@@ -14,7 +14,7 @@ if(!require(lubridate)) library(lubridate)
 gc() # garbage collection - It can be useful to call gc after a large object has been removed, as this may prompt R to return memory to the operating system.
 
 	#loading data from CSV
-df_mov <- read.csv("/Users/tiagob/Documents/Masters 2021/First Semester/Data Science/Assessment_NK/19776209/Question 1/data/Movies.csv")
+df_mov <- read.csv("/Users/tiagob/Documents/Masters 2021/First Semester/Data Science/DS Assessment 1/19776209/Question 1/data/Movies.csv")
 
 ```
 
