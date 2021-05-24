@@ -7,9 +7,9 @@ output: github_document
 
 # Overview/Purpose
 
-Practical on…
+This RMarkdown file is intended to be viewed as the solution for the Data Science Assessment on 24/05/2021.
 
-The following code was used to create the workspace environment:
+The following code was used, in the beginning, to create the workspace environment:
 
 ```{r, eval=FALSE}
 
