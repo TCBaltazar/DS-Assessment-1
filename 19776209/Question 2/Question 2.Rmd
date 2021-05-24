@@ -31,13 +31,33 @@ df2 <- datimport(fileimport="/Users/tiagob/Documents/Masters 2021/First Semester
 
 # Introduction
 
-The dataset used for this particular exercise merges data on billionaires in `r length(unique(df2$country))` countries. It contains 2755 observations in 7 variables, including the names of millionaires, their networth, the source of their wealth, their rank on the millionaires list, their age, and the industry within which they made their fortune. This discussion will present some diagrams in order to better understand the characteristics of billionaires.
+The dataset used for this particular exercise merges data on billionaires in `r length(unique(df2$country))` countries. It contains 2755 observations in 7 variables, including the names of billionaires, their networth, the source of their wealth, their rank on the millionaires list, their age, and the industry within which they made their fortune. This discussion will present some figures in order to better understand the characteristics of billionaires.
 
+# Figure 1 - Distribution of Billionaires Networth by Industry
 
+```{r, echo=FALSE, fig.cap = "Distribution of Billionaires Networth by Industry\\label{Figure1}"}
 
+df2 %>% arrange(networth)%>%ggplot(aes(x=industry, y=networth))+ geom_bar(stat="identity") + labs(x="Industry", y="Networth")
 
+```
 
+As we can see from Figure \ref{Figure1} (although the x-axis labels are unclear), the industry with the highest networth individuals is Finance and Investments, followed closely by Technology, and Manufacturing. 
 
+# Figure 2 - Billionaires Networth in BRICS Economies
+
+``` {r, echo=FALSE, fig.cap = "Distribution of Billionaires in BRICS Countries\\label{Figure2}" }
+
+BRICS <- c("Brazil", "Russia", "India", "China", "South Africa")
+
+BRICSplot <- df2 %>% arrange(networth)%>%filter(country%in%BRICS)
+
+a <-    BRICSplot%>% ggplot(aes(x=country, y=networth))+ geom_bar(stat="identity") + labs(x="Country", y="Networth") +theme(bw)   
+   
+a
+     
+```
+
+Figure \ref{Figure2} allows us to see that, out of the BRICS countries, Chinese billionaires have the greatest networth.  
 
 
 

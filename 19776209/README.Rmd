@@ -23,39 +23,28 @@ Texevier::create_template(directory='/Users/tiagob/Documents/Masters 2021/First 
 
 # Question 1 
 
-```{r, message=FALSE}		
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.width = 6, fig.height = 5, fig.pos="H", fig.pos = 'H')
 library(pacman)
-p_load(tidyverse, jtools)
+pacman::p_load(tidyverse, jtools, Hmisc)
 if(!require(lubridate)) library(lubridate)
-```
 
-COLLECT GARBAGE AND SOURCE IN FUNCTIONS USING…
-```{r}
 gc() # garbage collection - It can be useful to call gc after a large object has been removed, as this may prompt R to return memory to the operating system.
 
-list.file(“CODEFILEPATH”, full.names=T, recursive=T) %>% a.list() %>% walk(~source(.))
+	#loading data from CSV
+df_mov <- read.csv("/Users/tiagob/Documents/Masters 2021/First Semester/Data Science/Assessment_NK/19776209/Question 1/data/Movies.csv")
 
 ```
 
-DATA LOADING
-	Multiple CSV
-```{r} 
-Df_comb <- Data_Collating(Datroot=‘DATAFILEPATH’)
-```
+## Summary Statistics
 
-	Other Method
-```{r}
-    Loc <- "Question2/data/Wine/"
-    dff <- read_rds(glue::glue("{Loc}WineMag.rds"))
-    Fruitlist <- read_table("Question2/data/wine/Fruitlist.txt")
-    froots <- Fruitlist$Fruits  %>% unique %>% as.list()
-    CountryList <- c("South Africa", "Italy", "France", "US", "Spain")
+The dataset used to investigate the above claims is sourced from an associate at Mr Video, and contains info on movie critic and grossing data; with 74 observations in 8 variables. Statistics on the variables were generated using: 
 
-    dff_adj <- dff %>% filter(country %in% CountryList)
+``` {r, evaluate=FALSE}
+
+describe(df_mov)
 
 ```
-
-## Solution
 
 Describe how to answer; what function is doing.
 
